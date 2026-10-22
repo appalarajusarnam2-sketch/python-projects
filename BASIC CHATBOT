@@ -1,0 +1,56 @@
+def get_bot_response(user_input):
+    """
+    Function to process user input and return a rule-based reply.
+    Uses if-elif statements to match predefined intents.
+    """
+    # Normalize input: convert to lowercase and remove leading/trailing whitespace
+    text = user_input.lower().strip()
+
+    # Rule-based response logic
+    if text in ["hello", "hi", "hey"]:
+        return "Hi there! How can I help you today?"
+    
+    elif "how are you" in text:
+        return "I'm fine, thanks! How about you?"
+    
+    elif text in ["what is your name", "who are you"]:
+        return "I'm a simple rule-based Python chatbot."
+    
+    elif "help" in text:
+        return "You can say 'hello', ask 'how are you', or type 'bye' to exit."
+    
+    elif text in ["bye", "goodbye", "exit", "quit"]:
+        return "Goodbye! Have a great day!"
+    
+    else:
+        return "I'm sorry, I don't understand that. Type 'help' to see what I can do."
+
+
+def run_chatbot():
+    """
+    Main function to run the conversation loop and handle input/output.
+    """
+    print("=" * 45)
+    print("         WELCOME TO CHATBOT ASSISTANT        ")
+    print("=" * 45)
+    print("Chatbot: Hello! Type 'bye' or 'exit' to end the chat.\n")
+
+    # Conversation loop
+    while True:
+        user_message = input("You: ")
+
+        # Skip empty inputs
+        if not user_message.strip():
+            continue
+
+        # Get bot's reply from function
+        reply = get_bot_response(user_message)
+        print(f"Chatbot: {reply}\n")
+
+        # Exit condition
+        if user_message.lower().strip() in ["bye", "goodbye", "exit", "quit"]:
+            break
+
+
+if __name__ == "__main__":
+    run_chatbot()
